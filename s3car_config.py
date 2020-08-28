@@ -71,6 +71,12 @@ def check_update() -> bool:
     if len(content) == 0:
         raise ValueError(f"Problem with content of {URL_SITE_INFO}.")
 
+    # Code never run and file doesn't exist in the first place.
+    if not os.path.isfile(SITE_INFO_FILE):
+        with open(SITE_INFO_FILE, "w+") as fid:
+            fid.write(content)
+        return True
+
     tempfile = os.path.join(CONFIG_DIR, "tmp_test.txt")
     with open(tempfile, "w+") as fid:
         fid.write(content)
