@@ -4,7 +4,7 @@
 @creator: Valentin Louf <valentin.louf@bom.gov.au>
 @project: s3car-server
 @institution: Bureau of Meteorology
-@date: 27/08/2020
+@date: 28/08/2020
 
 .. autosummary::
     :toctree: generated/
@@ -54,6 +54,9 @@ def get_frequency_band(wavelength: float) -> str:
     for band, fmin, fmax in ieee_freq_band_ghz:
         if ghz >= fmin and ghz <= fmax:
             return band
+
+    # Freq band not found.
+    raise ValueError("Invalid radar wavelength. Is the wavelength in cm?")
 
 
 def check_update() -> bool:
